@@ -18,7 +18,7 @@ class Blog < ActiveRecord::Base
   end
   
   def self.search(search)
-    where("title LIKE ?", "%#{search}%") 
-    where("second_title LIKE ?", "%#{search}%")
+    where("LCASE(title) LIKE ?", "%#{ search.downcase }%") +
+    where("LCASE(second_title) LIKE ?", "%#{ search.downcase }%")
   end
 end
